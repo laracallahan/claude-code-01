@@ -1,0 +1,22 @@
+/* Hide default cursor */
+* {
+  cursor: none !important;
+}
+
+/* Custom heart cursor */
+#heart-cursor {
+  position: fixed;
+  top: -10px;
+  left: -10px;
+  width: 0;
+  height: 0;
+  font-size: 14px;
+  color: #FF0000;
+  pointer-events: none;
+  z-index: 99999;
+  will-change: transform;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  user-select: none;
+  line-height: 1;
+}
