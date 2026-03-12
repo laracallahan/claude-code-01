@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Lara Callahan</title>
+  <meta name="description" content="Get in touch with Lara Callahan for beauty, fashion, and editorial photography bookings." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #ffffff;
+      color: rgba(0, 0, 0, 0.85);
+      font-family: 'Newsreader', Georgia, serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1.5rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .header {
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      line-height: 1.2;
+      color: rgba(0, 0, 0, 0.85);
+    }
+
+    .header p {
+      margin-top: 0.6rem;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      color: rgba(0, 0, 0, 0.5);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    label {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: rgba(0, 0, 0, 0.5);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      background: #ffffff;
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 1rem;
+      color: rgba(0, 0, 0, 0.85);
+      outline: none;
+      transition: border-color 0.2s ease;
+      appearance: none;
+      border-radius: 0;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #FF0000;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    button {
+      width: 100%;
+      padding: 1.1rem 1.8rem;
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.85);
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      color: rgba(0, 0, 0, 0.85);
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    button:hover {
+      border-color: #FF0000;
+      color: #FF0000;
+    }
+
+    .back {
+      text-align: center;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .back:hover {
+      color: #FF0000;
+    }
+
+    .success {
+      display: none;
+      text-align: center;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      color: rgba(0, 0, 0, 0.6);
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Lara Callahan</h1>
+      <p>GET IN TOUCH</p>
+    </div>
+
+    <form id="contact-form" action="https://formspree.io/f/mjgaroqr" method="POST">
+      <div class="field">
+        <label for="name">NAME</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+      <div class="field">
+        <label for="company">COMPANY / BRAND</label>
+        <input type="text" id="company" name="company" />
+      </div>
+      <div class="field">
+        <label for="email">EMAIL</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <div class="field">
+        <label for="message">MESSAGE</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+      <button type="submit">SEND</button>
+    </form>
+
+    <p class="success" id="success-msg">
+      Thank you.<br />I'll be in touch shortly.
+    </p>
+
+    <a class="back" href="/">← BACK</a>
+  </div>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    const success = document.getElementById('success-msg');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
